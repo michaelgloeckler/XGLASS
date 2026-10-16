@@ -78,6 +78,25 @@ The core XGLASS implementation is located in `src/xglass/`:
   Evaluation entry point. Computes ROC-AUC, Spearman correlation, and Hit@K metrics.
 
 ---
+## Download the checkpoint
+
+Download [xglass.ckpt](https://huggingface.co/MichaelGlo/XGLASS/resolve/main/xglass.ckpt?download=true)
+into `checkpoints/vit_base_patch16_224.augreg_in21k_aip_wide_alpha0.75/`,
+or run this from the repository root:
+
+```bash
+pip install huggingface_hub
+hf download MichaelGlo/XGLASS xglass.ckpt --local-dir checkpoints/vit_base_patch16_224.augreg_in21k_aip_wide_alpha0.75
+```
+
+The file should be at:
+
+```text
+checkpoints/vit_base_patch16_224.augreg_in21k_aip_wide_alpha0.75/xglass.ckpt
+```
+
+---
+
 ## 🧪 Demos
 
 We provide **two demo notebooks** that illustrate the use of XGLASS for slice relevance prediction and how to train our model. The demos showcase **the inference behavior of our best-performing checkpoint** as well as the **training and data-loading pipeline** used in our experiments.
@@ -144,10 +163,6 @@ wandb sync wandb_logs/
 Model checkpoints are written to `--checkpoint_dir` (e.g., `checkpoints/`). The training keeps only the **selected** checkpoint and uses it for the final `trainer.test(..., ckpt_path="best")` evaluation.
 
 ---
-
-## Checkpoints
-
-TODO Checkpoint release on huggingface.
 
 ## Evaluation
 

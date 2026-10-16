@@ -44,7 +44,7 @@ zero-based axial indices 0--239. Rankings are keyed by both CT and finding.
 
 ```bash
 python src/xglass/export_orders.py \
-  --ckpt_path checkpoints/vit_base_patch16_224.augreg_in21k_aip_wide_alpha0.75/epoch=06.ckpt \
+  --ckpt_path checkpoints/vit_base_patch16_224.augreg_in21k_aip_wide_alpha0.75/xglass.ckpt \
   --out_orders_dir results/orders/xglass
 ```
 
