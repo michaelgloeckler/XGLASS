@@ -60,6 +60,20 @@ python data/REFLACX/extract_importance_maps.py --root data/reflacx --out data/pr
 This step produces **raw, unsmoothed gaze importance maps** stored as NumPy files.
 
 ---
+### Download CTs and Segmentations with Python
+
+Accept the access terms for [CT-RATE](https://huggingface.co/datasets/ibrahimhamamci/CT-RATE) and [ReXGroundingCT](https://huggingface.co/datasets/rajpurkarlab/ReXGroundingCT), then download the paper-split data:
+
+```bash
+pip install -r requirements-download.txt
+hf auth login
+# Download all paper-split CTs and segmentations
+python data/download_datasets.py
+```
+
+Manual downloads are also supported, as described below.
+
+---
 
 ### 1.2 ReXGroundingCT (3D Segmentations)
 
