@@ -51,7 +51,10 @@ data/
 │           └── gaze.csv
 ```
 
-After downloading the dataset in this structure, run the following script to extract disease-conditioned gaze importance maps:
+Disease-conditioned gaze heatmaps for **14 diseases** are already provided;
+the paper used **six** of these diseases. Recreating the heatmaps is optional.
+If you want to recreate them from REFLACX, download the dataset in the
+structure above and run:
 
 ```bash
 python data/REFLACX/extract_importance_maps.py --root data/reflacx --out data/processed/gaze_importance_maps

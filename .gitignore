@@ -34,3 +34,7 @@ checkpoints/
 *.nii
 *.nii.gz
 *.log
+*.egg-info/
+build/
+dist/
+tmp/

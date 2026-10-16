@@ -27,7 +27,8 @@ class SlicePredictor(pl.LightningModule):
                  backbone_learning_rate: float = 1e-5,
                  backbone_frozen: bool = False,
                  data_image_size: int = 256,
-                 cache_dir: str = None):
+                 cache_dir: str = None,
+                 pretrained: bool = True):
         super().__init__()
         self.save_hyperparameters()
 
@@ -36,7 +37,7 @@ class SlicePredictor(pl.LightningModule):
         log(f"Using cache directory: {cache_dir}")
         self.backbone = timm.create_model(
             model_name,
-            pretrained=True,
+            pretrained=pretrained,
             in_chans=3,
             num_classes=0,
             cache_dir=self.hparams.cache_dir

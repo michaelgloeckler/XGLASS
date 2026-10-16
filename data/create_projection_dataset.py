@@ -45,7 +45,7 @@ HEATMAP_SLUGS = {
     "Atelectasis": "atelectasis",
     "Consolidation": "consolidation",
     "Groundglass opacity": "groundglass-opacity",
-    "High lung volume / emphysema": "high-lung-volume--emphysema",
+    "High lung volume / emphysema": "high-lung-volume-emphysema",
     "Lung nodule or mass": "lung-nodule-or-mass",
     "Pleural abnormality": "pleural-abnormality",
 }
@@ -53,7 +53,7 @@ HEATMAP_SLUGS = {
 # --- Regex wie vorher ---
 CRE = {
     "Atelectasis": re.compile(r"\batelectas(?:is|tic)\b|\bcollaps(?:e|ed|ing)\b|\bsubsegmental[-\s]+atelectasis\b|\bplate[-\s]+atelectasis\b|\bvolume[-\s]+loss\b", re.I),
-    "Consolidation": re.compile(r"\bconsolidat(?:e|ion|ed|ing)\b|\bair[-\s]*space(?:\s+opacity)?\b|\balveolar[-\s]+opacity\b|\blobar[-\s]+consolidation\b|\bsegmental[-\s]+consolidation\b", re.I),
+    "Consolidation": re.compile(r"\bconsolidat(?:e|ions?|ed|ing)\b|\bair[-\s]*space(?:\s+opacity)?\b|\balveolar[-\s]+opacity\b|\blobar[-\s]+consolidation\b|\bsegmental[-\s]+consolidation\b", re.I),
     "Groundglass opacity": re.compile(r"\bground[-\s]?glass\b|\bGGO\b|\bground[-\s]+glass[-\s]+opacit(?:y|ies)\b", re.I),
     "High lung volume / emphysema": re.compile(r"\bhyperinflation\b|\bhyperexpand(?:ed|s|ing)?\b|\bhigh[-\s]+lung[-\s]+volume\b|\bemphysema(?:tous)?\b|\bhyperinflated[-\s]+lungs?\b", re.I),
     "Lung nodule or mass": re.compile(r"\bpulmonary[-\s]+nodule(?:s)?\b|\blung[-\s]+nodule(?:s)?\b|\bnodule(?:s)?\b|\bnodular[-\s]+opacity(?:ies)?\b|\bpulmonary[-\s]+mass\b|\bmass[-\s]+like[-\s]+opacity\b|\bmass\b|\blesion\b", re.I),
@@ -437,7 +437,7 @@ def main():
                         if heatmap_dir:
                             heatmap_slug = HEATMAP_SLUGS.get(cat)
                             if heatmap_slug:
-                                npz_path = heatmap_dir / f"03_avg_raw_{heatmap_slug}.npz"
+                                npz_path = heatmap_dir / f"gaze_raw_{heatmap_slug}.npz"
                                 if npz_path.is_file():
                                     try:
                                         hm = np.load(npz_path)

@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xglass"
+version = "0.1.0"
+description = "Disease-conditioned slice ranking for CT volumes"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["torch", "torchvision", "timm"]
+
+[project.optional-dependencies]
+hub = ["huggingface_hub>=0.27,<2", "safetensors>=0.4.3"]
+train = ["numpy", "pandas", "scipy", "scikit-learn", "matplotlib", "pillow", "tqdm", "pyyaml", "pytorch-lightning", "torchmetrics", "SimpleITK", "opencv-python", "nibabel", "wandb"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

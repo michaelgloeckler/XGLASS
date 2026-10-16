@@ -59,7 +59,7 @@ def main() -> None:
     )
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = SlicePredictor.load_from_checkpoint(args.ckpt_path, cache_dir=None)
+    model = SlicePredictor.load_from_checkpoint(args.ckpt_path, cache_dir=None, pretrained=False)
     model.eval().to(device)
 
     out_dir = Path(args.out_orders_dir)

@@ -43,13 +43,17 @@ Use Python 3.11 and install a PyTorch build compatible with your GPU driver. Dep
 XGLASS relies on several publicly available datasets (REFLACX, ReXGroundingCT, CT-RATE).
 Due to licensing and privacy restrictions, **raw datasets are not included; the demo notebooks contain illustrative outputs**.
 
+Disease-conditioned gaze heatmaps for **14 diseases** are already provided;
+the paper used **six** of these diseases. Recreating the heatmaps from
+REFLACX is optional.
+
 ➡️ **All dataset download instructions, folder layouts, and preprocessing steps are documented in:** `data/README.md`
 
 
 That document describes how to:
 
 * Download all required datasets from their original sources
-* Extract disease-conditioned gaze heatmaps from REFLACX
+* Optionally recreate the provided disease-conditioned gaze heatmaps from REFLACX
 * Prepare CT volumes and chest bounding boxes
 * Create the final projection dataset consisting of coronal CT projections (AIP + Beer–Lambert) and slice-level relevance targets
 
@@ -143,10 +147,7 @@ Model checkpoints are written to `--checkpoint_dir` (e.g., `checkpoints/`). The 
 
 ## Checkpoints
 
-Pretrained XGLASS weights will be linked here. A download link is not available yet.
-Place the checkpoint in
-`checkpoints/vit_base_patch16_224.augreg_in21k_aip_wide_alpha0.75/`
-and set its path in the inference notebook or ranking-export command.
+TODO Checkpoint release on huggingface.
 
 ## Evaluation
 
@@ -194,17 +195,9 @@ inputs. The released preprocessing also uses lung/heart segmentations to
 construct chest bounding boxes; these are distinct from finding masks.
 Binary and Gaussian slice targets are supported as alternative supervision.
 
-## Contact
-
-For questions or issues, please open a GitHub issue.
+# Cite
 
 ---
 
+TODO add cite
 
-## License
-
-Project code is available under the [MIT License](LICENSE), permitting use,
-modification and redistribution, including commercial use, with the license
-and copyright notice retained. Third-party datasets, model weights and
-medical-image examples remain subject to their own terms; see
-[third-party notices](THIRD_PARTY_NOTICES.md).

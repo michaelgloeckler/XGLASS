@@ -19,7 +19,8 @@ def ct_remote_path(name: str) -> str:
     if match is None:
         raise ValueError(f'Unexpected CT-RATE filename: {name!r}')
     split, patient, scan, _ = match.groups()
-    return f'dataset/{split}/{split}_{patient}/{split}_{patient}_{scan}/{name}'
+    # CT-RATE v2 includes corrected HU intensities and spatial metadata.
+    return f'dataset/{split}_fixed/{split}_{patient}/{split}_{patient}_{scan}/{name}'
 
 
 def select_names(splits: dict, selected: list[str], metadata: dict, limit: int | None) -> list[str]:
@@ -135,6 +136,12 @@ def main(argv=None):
         record_path = root/'download_manifest.json'
         if record_path.exists():
             previous = json.loads(record_path.read_text(encoding='utf-8'))
+            previous_files = {item['destination']: item for item in previous['files']}
+            for item in plan:
+                old = previous_files.get(item['destination'])
+                if old and (old['repo_id'], old['filename']) != (item['repo_id'], item['filename']):
+                    raise ValueError('Download source changed (for example CT-RATE v1 to v2); '
+                                     'use another --out_root to avoid reusing uncorrected volumes.')
             for repo in {item['repo_id'] for item in plan}:
                 if previous['revisions'][repo] != revisions[repo]:
                     raise ValueError('Dataset revision changed; pass the recorded revision or use another --out_root.')

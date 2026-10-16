@@ -116,6 +116,7 @@ def main():
         sys.exit(1)
 
     all_results = []
+    failed_experiments = 0
     log("--- Starting Evaluation of Trained Models ---")
 
     for exp_dir in sorted(root_ckpt_dir.iterdir()):
@@ -141,6 +142,7 @@ def main():
                 splits_json_path = Path(args.data_root) / args.splits_json
             if not splits_json_path.is_file():
                 log(f"ERROR: splits_json not found: {args.splits_json} (also tried {splits_json_path})")
+                failed_experiments += 1
                 continue
 
             datamodule = SliceDataModule(
@@ -155,7 +157,7 @@ def main():
 
             log("Loading model from checkpoint...")
             # cache_dir=None overrides any saved hparams cache path
-            model = SlicePredictor.load_from_checkpoint(str(ckpt_path), cache_dir=None)
+            model = SlicePredictor.load_from_checkpoint(str(ckpt_path), cache_dir=None, pretrained=False)
 
             trainer = pl.Trainer(
                 accelerator='auto',
@@ -165,7 +167,9 @@ def main():
 
             log("Running test set...")
             test_results = trainer.test(model, datamodule=datamodule, verbose=False)
-            metrics = test_results[0] if test_results else {}
+            if not test_results or not test_results[0]:
+                raise RuntimeError("Evaluation produced no test metrics")
+            metrics = test_results[0]
 
             row = {"experiment": exp_name}
             row.update(metrics)
@@ -174,13 +178,14 @@ def main():
             log(f"Successfully evaluated {exp_name}.")
 
         except Exception as e:
+            failed_experiments += 1
             log(f"ERROR: Failed to evaluate {exp_name}: {e}")
             import traceback
             traceback.print_exc()
 
     if not all_results:
         log("No results to save. Exiting.")
-        sys.exit(0)
+        sys.exit(1)
 
     # Collect metric keys from all runs (union), stable order
     metric_keys = sorted({k for r in all_results for k in r.keys() if k.startswith("test_")})
@@ -235,6 +240,9 @@ def main():
         print(df[cols_to_show].sort_values(by=sort_key, ascending=False))
 
     log("--- Evaluation Complete ---")
+    if failed_experiments:
+        log(f"ERROR: {failed_experiments} experiment(s) failed; saved successful results only.")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
