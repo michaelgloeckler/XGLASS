@@ -1,5 +1,8 @@
 # datasets (raw + processed)
-data/processed/
+data/processed/*
+!data/processed/gaze_importance_maps/
+data/processed/gaze_importance_maps/*
+!data/processed/gaze_importance_maps/gaze_raw_*.npz
 
 # demo outputs / caches
 notebooks/.ipynb_checkpoints/

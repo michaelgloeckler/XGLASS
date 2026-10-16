@@ -18,9 +18,11 @@ This document describes:
 
 ### 1.1 REFLACX (Radiologist Gaze + Reports)
 
+Precomputed gaze priors are included in `data/processed/gaze_importance_maps/`; regeneration from REFLACX is optional.
+
 REFLACX provides eye-tracking data and synchronized report transcriptions for chest X-rays.
 
-* Source: PhysioNet (restricted access)
+* Source: PhysioNet
 * URL: [https://physionet.org/content/reflacx/](https://physionet.org/content/reflacx/)
 * Access requires:
 
