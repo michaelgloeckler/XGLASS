@@ -1,0 +1,7 @@
+-r requirements.txt
+
+# Hugging Face VLM inference
+transformers
+accelerate
+sentencepiece
+# Optional for --quantization 4bit/8bit: install bitsandbytes separately.

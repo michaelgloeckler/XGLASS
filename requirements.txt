@@ -1,0 +1,26 @@
+# --- core ---
+numpy
+pandas
+scipy
+scikit-learn
+matplotlib
+pillow
+tqdm
+pyyaml
+
+# --- deep learning ---
+torch
+torchvision
+timm
+
+# --- training framework (if you use Lightning) ---
+pytorch-lightning
+torchmetrics
+
+# --- medical I/O / preprocessing (safe to include for notebook demos) ---
+SimpleITK
+opencv-python
+nibabel
+
+# --- logging (you mention W&B; keep it in one-file setup) ---
+wandb

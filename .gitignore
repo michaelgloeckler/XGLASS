@@ -1,0 +1,33 @@
+# datasets (raw + processed)
+data/processed/
+
+# demo outputs / caches
+notebooks/.ipynb_checkpoints/
+.ipynb_checkpoints/
+.cache*/
+wandb_logs/
+wandb/
+results/
+# Local environments and credentials
+.conda/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# Medical data and generated outputs
+data/REFLACX/*
+!data/REFLACX/extract_importance_maps.py
+data/ReXGroundingCT/*
+!data/ReXGroundingCT/extract_chestbboxes.py
+checkpoints/
+*.ckpt
+*.pt
+*.pth
+*.nii
+*.nii.gz
+*.log
