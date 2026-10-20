@@ -13,14 +13,14 @@ torch
 torchvision
 timm
 
-# --- training framework (if you use Lightning) ---
+# --- training and checkpoint loading ---
 pytorch-lightning
 torchmetrics
 
-# --- medical I/O / preprocessing (safe to include for notebook demos) ---
+# --- medical I/O and preprocessing ---
 SimpleITK
 opencv-python
 nibabel
 
-# --- logging (you mention W&B; keep it in one-file setup) ---
+# --- experiment logging ---
 wandb

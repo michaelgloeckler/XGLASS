@@ -3,8 +3,8 @@
 # Data Preparation
 
 This project relies on several publicly available medical imaging and gaze datasets.
-Due to licensing and privacy restrictions, **raw datasets are not included; demo notebooks contain illustrative outputs**.
-All data must be obtained from the original sources and preprocessed locally.
+Download the datasets from the official sources below and preprocess them
+locally. The demo notebooks include example outputs.
 
 This document describes:
 
@@ -214,7 +214,7 @@ data/processed/projection_dataset/
 
 ## Notes on Data Usage
 
-* Raw CT volumes, gaze recordings and segmentation datasets are not included. The demo notebooks contain illustrative outputs.
+* Obtain raw CT volumes, gaze recordings, and segmentation datasets from their official sources.
 * All preprocessing must be done in accordance with the original dataset licenses.
 * Check the source dataset terms before redistributing generated artifacts or examples; the code license does not replace those terms.
 
@@ -225,8 +225,8 @@ Run commands from the repository root. Use `splits/paper_splits.json` for
 projection creation, training, evaluation and the notebooks. The projection
 builder accepts this repository-relative path; input dataset JSON paths can
 also be resolved relative to `--data_root`. Use the matching complete manifest
-to reproduce the paper cohort. A small example dataset alone is insufficient
-for training or full evaluation.
+for paper-cohort training and evaluation. For smaller demo datasets, use a
+split file matching the selected CTs.
 
 Install TotalSegmentator separately for chest-box generation:
 

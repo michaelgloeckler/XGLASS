@@ -37,14 +37,15 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Use Python 3.11 and install a PyTorch build compatible with your GPU driver. Dependency versions and paper-result reproduction still need validation in a fresh environment.
+Use Python 3.11 and install a PyTorch build compatible with your GPU driver.
 
 ---
 
 ## Data & Preprocessing
 
 XGLASS relies on several publicly available datasets (REFLACX, ReXGroundingCT, CT-RATE).
-Due to licensing and privacy restrictions, **raw datasets are not included; the demo notebooks contain illustrative outputs**.
+Download the datasets from their official sources using the instructions in
+[data/README.md](data/README.md). The demo notebooks include example outputs.
 
 Disease-conditioned gaze heatmaps for **14 diseases** are already provided;
 the paper used **six** of these diseases. Recreating the heatmaps from
@@ -104,8 +105,8 @@ checkpoints/vit_base_patch16_224.augreg_in21k_aip_wide_alpha0.75/xglass.ckpt
 
 We provide **two demo notebooks** that illustrate the use of XGLASS for slice relevance prediction and how to train our model. The demos showcase **the inference behavior of our best-performing checkpoint** as well as the **training and data-loading pipeline** used in our experiments.
 
-⚠️ **Data access & licensing.**
-XGLASS relies on several third-party medical datasets (e.g., REFLACX, ReXGroundingCT). Due to privacy and licensing constraints, **raw datasets are not included**; the notebooks contain illustrative outputs. The demo notebooks **do not download datasets or request credentials**. They assume that all required datasets have been obtained through their official channels and prepared locally according to: `data/README.md`
+Prepare the datasets using [data/README.md](data/README.md) before running
+the notebooks.
 
 ---
 
@@ -200,10 +201,9 @@ prediction generation, and matched-budget evaluation commands.
 
 ## Paper Split
 
-Use `--splits_json splits/paper_splits.json` for the paper cohort in training,
-evaluation and downstream commands. The small local split used by the demo
-notebooks is for illustration and does not reproduce the full paper cohort.
-The paper split must be used with the matching complete projection manifest.
+Use `--splits_json splits/paper_splits.json` with the matching complete
+projection manifest for paper-cohort training, evaluation, and downstream
+commands. For a smaller demo dataset, provide a split file matching its CTs.
 
 ## Notes on Supervision
 
@@ -228,3 +228,5 @@ If you use XGLASS in your research, please cite our [paper](https://arxiv.org/ab
       url={https://arxiv.org/abs/2610.26255},
 }
 ```
+
+If you have any questions, please email [michael.gloeckler@uni-ulm.de](mailto:michael.gloeckler@uni-ulm.de).
