@@ -2,7 +2,8 @@
 
 This is the official implementation of **XGLASS**, accepted at **WACV 2027**.
 
-[Paper](https://arxiv.org/abs/2610.26255)
+[![arXiv](https://img.shields.io/badge/arXiv-2610.26255-b31b1b.svg)](https://arxiv.org/abs/2610.26255)
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Model%20%26%20Checkpoint-FFD21E.svg)](https://huggingface.co/MichaelGlo/XGLASS)
 
 ![Pipeline Architecture](Final_pipeline.svg)
 
