@@ -2,6 +2,8 @@
 
 This is the official implementation of **XGLASS**, accepted at **WACV 2027**.
 
+[Paper](https://arxiv.org/abs/2610.26255)
+
 ![Pipeline Architecture](Final_pipeline.svg)
 
 Vision-language models (VLMs) achieve remarkable performance on 2D medical images, such as X-rays or pathology images, while 3D VLMs that directly process CT/MRI volumes lag behind due to limited 3D training data and the predominance of 2D foundation architectures. To leverage powerful 2D VLMs for analyzing medical volumes, which contain hundreds of slices, it is therefore necessary to focus only on those few slices, which are diagnostically relevant. To enable such a prioritization, we propose XGLASS, a method that transfers medical expertise from 2D X-rays to 3D CT for task-aware slice prioritization. XGLASS uses disease-conditioned importance maps derived from language-aligned radiologist gaze on X-rays and spatially aligns them with coronal CT projections, bringing gaze priors and CT content into a shared 2D representation. The fused gaze-prior/CT projection is then used to predict a disease-specific ordering of axial slices, prioritizing diagnostically relevant slices. XGLASS significantly improves budgeted retrieval over 2D and 3D-native baselines, achieving a top-10 hit rate up to 75.9% for the best-performing disease. In practice, this means that after inspecting only the top 10 slices (4.17% of a 240-slice scan), XGLASS identifies a diagnostically relevant slice in more than 75% of cases. For downstream slice-wise finding classification, an XGLASS-selected 30-slice candidate set reduces model calls by 87.5% while improving F1 by 11.3 percentage points over all-slice inference, 4.2 points over the strongest 2D selector, and remains competitive with 3D-native selectors while requiring up to 130.8× less time and 10.9× less GPU memory per finding, supporting its use as a lightweight preselector for volumetric CT analysis.
@@ -210,9 +212,18 @@ inputs. The released preprocessing also uses lung/heart segmentations to
 construct chest bounding boxes; these are distinct from finding masks.
 Binary and Gaussian slice targets are supported as alternative supervision.
 
-# Cite
+## Citation
 
----
+If you use XGLASS in your research, please cite our [paper](https://arxiv.org/abs/2610.26255):
 
-TODO add cite
-
+```bibtex
+@misc{glöckler2026xglassxraygazelanguage,
+      title={XGLASS: X-Ray, Gaze and Language Assisted Slice Sequencing for CT Volumes},
+      author={Michael Glöckler and Timo Ropinski},
+      year={2026},
+      eprint={2610.26255},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2610.26255},
+}
+```
